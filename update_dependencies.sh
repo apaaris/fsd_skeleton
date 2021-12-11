@@ -37,7 +37,7 @@ BLACKLIST_PACKAGES=''
 #    #BLACKLIST_PACKAGES='fssim_interface fssim'
 #else 
     echo "ENABLED"
-    BLACKLIST_PACKAGES='fssim fssim_interface'
+    #BLACKLIST_PACKAGES='fssim fssim_interface'
     FSD_WORKPACKAGES=("${FSD_WORKPACKAGES[@]}" 'fssim_interface')
 #fi
 
