@@ -1,6 +1,6 @@
 #!/bin/bash
 
-FSD_ROOT=$( cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)
+FSD_ROOT=$( cd "$(dirname "${(%):-%N}" )" && pwd)
 
 alias FSD_source="source ${FSD_ROOT}/fsd_environment.sh"
 alias FSD_build="catkin clean --yes && catkin build"
@@ -21,4 +21,4 @@ alias FSD_rviz_autox="roslaunch fsd_common_meta rviz_autox.launch"
 alias FSD_rviz_scruti="roslaunch fsd_common_meta rviz_scruti.launch"
 
 # FSSIM
-alias FSD_ATS="FSD_source; ${FSD_ROOT}/src/fssim/fssim/scripts/launch.py --config ${FSD_ROOT}/src/fssim_interface/fssim_config/ats_simulation.yaml --output ${HOME}/sim_output/"
+alias FSD_ATS="FSD_source; /home/apaaris/amzDV/src/fssim/fssim/scripts/launch.py --config ${FSD_ROOT}/src/fssim_interface/fssim_config/ats_simulation.yaml --output ${HOME}/sim_output/"

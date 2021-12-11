@@ -5,13 +5,13 @@
 
 # Apt packages
 
-WSTOOL_PACKAGE="python-wstool"
+WSTOOL_PACKAGE="python3-wstool"
 
 CHECKINSTALL_PACKAGE="checkinstall"
 
 ROS_PACKAGE=(
-    "ros-kinetic-desktop-full"
-    "ros-kinetic-ros-base"
+    "ros-noetic-desktop-full"
+    "ros-noetic-ros-base"
 )
 
 FSD_WORKPACKAGES=(
@@ -48,9 +48,9 @@ FSD_DEPENDENCY_FILE="dependencies.rosinstall"
 # TODO: check whether cpplint is installed
 CPPLINT_PACKAGE="cpplint"
 
-ABSOLUTE_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ABSOLUTE_PATH="$(cd "$(dirname "${(%):-%N}")" && pwd)"
 TOP_LEVEL_DIR_NAME="$(basename "${ABSOLUTE_PATH}")"
-FSD_ROOT_VAR=$( cd "$(dirname "${BASH_SOURCE[0]}" )" && pwd)
+FSD_ROOT_VAR=$( cd "$(dirname "${(%):-%N}" )" && pwd)
 FSD_ROSDEP_DIR="${ABSOLUTE_PATH}/src/4_continuous_integration/rosdep"
 ROSDEP_SOURCES_TARGET="/etc/ros/rosdep/sources.list.d"
 
@@ -94,23 +94,23 @@ fi
 printf "[${green}YES${end}]\n"
 
 #########################################
-# 		Add nice aliases to ~/.bashrc 	#
+# 		Add nice aliases to ~/.zshrc 	#
 #########################################
 if [ -z "$FSD_ROOT" ]; then
     printf "Setting Aliases and Variables..."
 
-    if ! grep -Fxq "export FSD_ROOT=$FSD_ROOT_VAR" ~/.bashrc; then
-        printf "\nAdding export FSD_ROOT to ~/.bashrc... "
-        echo "" >> ~/.bashrc
-        echo "# FSD 2019 Environment variables" >> ~/.bashrc
-        echo "export FSD_ROOT=$FSD_ROOT_VAR" >> ~/.bashrc
+    if ! grep -Fxq "export FSD_ROOT=$FSD_ROOT_VAR" ~/.zshrc; then
+        printf "\nAdding export FSD_ROOT to ~/.zshrc... "
+        echo "" >> ~/.zshrc
+        echo "# FSD 2019 Environment variables" >> ~/.zshrc
+        echo "export FSD_ROOT=$FSD_ROOT_VAR" >> ~/.zshrc
     fi
 
-    if ! grep -Fxq "# FSD aliases source" ~/.bashrc; then
+    if ! grep -Fxq "# FSD aliases source" ~/.zshrc; then
 	FSD_ROOT=${FSD_ROOT_VAR}
-        printf "\nAdding alias commands to ~/.bashrc... "
-        echo "" >> ~/.bashrc
-        echo "source ${FSD_ROOT}/fsd_environment.sh" >> ~/.bashrc
+        printf "\nAdding alias commands to ~/.zshrc... "
+        echo "" >> ~/.zshrc
+        echo "source ${FSD_ROOT}/fsd_environment.sh" >> ~/.zshrc
     fi
 else
 	printf "Aliases and Environment variables has been set... "
@@ -164,7 +164,7 @@ if [[ $REPLY =~ ^[Yy]$ ]] || [ -z $REPLY ]; then
     printf "Sudo might ask for your password now!\n"
     COPY_FAILED_MESSAGE="[${red}COPY FAILED: The dependency update might fail now!${end}]\n"
     sudo cp "${FSD_ROSDEP_DIR}/fsd-dependencies.yaml" "${ROSDEP_SOURCES_TARGET}/" || { printf "$COPY_FAILED_MESSAGE" ; }
-    sudo cp ${FSD_ROSDEP_DIR}/*.rdmanifest "${ROSDEP_SOURCES_TARGET}/" || { printf "$COPY_FAILED_MESSAGE" ; }
+    #sudo cp ${FSD_ROSDEP_DIR}/*.rdmanifest "${ROSDEP_SOURCES_TARGET}/" || { printf "$COPY_FAILED_MESSAGE" ; }
     sudo cp "${FSD_ROSDEP_DIR}/10-fsd-dependencies.list" "${ROSDEP_SOURCES_TARGET}/" || { printf "$COPY_FAILED_MESSAGE" ; }
 
     sudo apt-get update
@@ -192,9 +192,9 @@ fi
 #################################################
 if [ ! -z $FSSIM ]; then
     printf "Updating FSSIM dependencies..."
-    cd src/fssim/
-    git pull
-    ./update_dependencies.sh
-    git lfs pull
-    cd ../../
+    #cd src/fssim/
+    #git pull
+    #./update_dependencies.sh
+    #git lfs pull
+    #cd ../../
 fi
