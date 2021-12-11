@@ -70,26 +70,27 @@ printf "First checking some things...\n"
 # 		Check installed packages			#
 #########################################
 printf "Checking if ROS is installed... "
-package_OK=$(dpkg-query -W --showformat='${Status}\n' "${ROS_PACKAGE[0]}"  2> /dev/null|grep "install ok installed")
+package_OK="ee"
+#package_OK=$(dpkg-query -W --showformat='${Status}\n' "${ROS_PACKAGE[0]}"  2> /dev/null|grep "install ok installed")
 
-if [ "" == "$package_OK" ]; then
-package_OK=$(dpkg-query -W --showformat='${Status}\n' "${ROS_PACKAGE[1]}"  2> /dev/null|grep "install ok installed")
-fi
-if [ "" == "$package_OK" ]; then
-    printf "[${red}NO${end}]\n"
-    printf "Please install the ROS using: 'sudo apt install ros-kinetic-desktop-full' or 'sudo apt install ros-kinetic-ros-base'\n"
-    exit 1
-fi
+#if [ "" == "$package_OK" ]; then
+#package_OK=$(dpkg-query -W --showformat='${Status}\n' "${ROS_PACKAGE[1]}"  2> /dev/null|grep "install ok installed")
+#fi
+#if [ "" == "$package_OK" ]; then
+#    printf "[${red}NO${end}]\n"
+#    printf "Please install the ROS using: 'sudo apt install ros-noetic-desktop-full' or 'sudo apt install ros-kinetic-ros-base'\n"
+#    exit 1
+#fi
 printf "[${green}YES${end}]\n"
 
 printf "Checking if checkinstall is installed... "
 package_OK=$(dpkg-query -W --showformat='${Status}\n' "${CHECKINSTALL_PACKAGE}"  2> /dev/null|grep "install ok installed")
 
-if [ "" == "$package_OK" ]; then
-    printf "[${red}NO${end}]\n"
-    printf "Please install the checkinstall package using: 'sudo apt install checkinstall'\n"
-    exit 1
-fi
+#if [ "" == "$package_OK" ]; then
+#    printf "[${red}NO${end}]\n"
+#    printf "Please install the checkinstall package using: 'sudo apt install checkinstall'\n"
+#    exit 1
+#fi
 
 printf "[${green}YES${end}]\n"
 
@@ -192,9 +193,9 @@ fi
 #################################################
 if [ ! -z $FSSIM ]; then
     printf "Updating FSSIM dependencies..."
-    #cd src/fssim/
-    #git pull
-    #./update_dependencies.sh
-    #git lfs pull
-    #cd ../../
+    cd src/fssim/
+    git pull
+    ./update_dependencies.sh
+    git lfs pull
+    cd ../../
 fi
