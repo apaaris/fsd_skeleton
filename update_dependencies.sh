@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # Sonja Brits <britss@ethz.ch> - FSD Driverless 2019
 # Adapted from work by Huub Hendrikx <hhendrik@ethz.ch>
@@ -25,20 +25,21 @@ BLACKLIST_PACKAGES=''
 ###################################
 # Decide whether to include fssim #
 ###################################
-case $1 in
-    -f|--fssim)
-    FSSIM="TRUE"
-    ;;
-esac
+#case $1 in
+#    -f|--fssim)
+#    FSSIM="TRUE"
+#    ;;
+#esac
 
-printf "FSSIM is..."
-if [ -z $FSSIM ]; then
-    echo "DISABLED"
-    BLACKLIST_PACKAGES='fssim_interface fssim'
-else 
+#printf "FSSIM is..."
+#if [ -z $FSSIM ]; then
+#    echo "DISABLED"
+#    #BLACKLIST_PACKAGES='fssim_interface fssim'
+#else 
     echo "ENABLED"
+    BLACKLIST_PACKAGES='fssim fssim_interface'
     FSD_WORKPACKAGES=("${FSD_WORKPACKAGES[@]}" 'fssim_interface')
-fi
+#fi
 
 #####################################
 # 			Set paths 				#

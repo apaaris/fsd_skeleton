@@ -21,4 +21,4 @@ alias FSD_rviz_autox="roslaunch fsd_common_meta rviz_autox.launch"
 alias FSD_rviz_scruti="roslaunch fsd_common_meta rviz_scruti.launch"
 
 # FSSIM
-alias FSD_ATS="FSD_source; /home/apaaris/amzDV/src/fssim/fssim/scripts/launch.py --config ${FSD_ROOT}/src/fssim_interface/fssim_config/ats_simulation.yaml --output ${HOME}/sim_output/"
+alias FSD_ATS="FSD_source; ${FSD_ROOT}/src/fssim/scripts/launch.py --config ${FSD_ROOT}/src/fssim_interface/fssim_config/ats_simulation.yaml --output ${HOME}/sim_output/"
